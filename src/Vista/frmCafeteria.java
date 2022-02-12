@@ -71,6 +71,8 @@ public class frmCafeteria extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         txtCantidadVenta = new javax.swing.JTextField();
         btnVender = new javax.swing.JButton();
+        jPanel5 = new javax.swing.JPanel();
+        jpInventarioProductos = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -438,6 +440,36 @@ public class frmCafeteria extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Venta de productos", jPanel4);
 
+        javax.swing.GroupLayout jpInventarioProductosLayout = new javax.swing.GroupLayout(jpInventarioProductos);
+        jpInventarioProductos.setLayout(jpInventarioProductosLayout);
+        jpInventarioProductosLayout.setHorizontalGroup(
+            jpInventarioProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 512, Short.MAX_VALUE)
+        );
+        jpInventarioProductosLayout.setVerticalGroup(
+            jpInventarioProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 419, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(63, 63, 63)
+                .addComponent(jpInventarioProductos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(620, Short.MAX_VALUE))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jpInventarioProductos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jTabbedPane1.addTab("Graficos", jPanel5);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -571,8 +603,10 @@ public class frmCafeteria extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
+    public javax.swing.JPanel jpInventarioProductos;
     public javax.swing.JTextField txtBuscar;
     public javax.swing.JTextField txtCantidadBuscar;
     public javax.swing.JTextField txtCantidadVenta;

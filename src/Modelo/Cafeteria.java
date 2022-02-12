@@ -7,6 +7,7 @@ package Modelo;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 /**
  *
@@ -189,6 +190,26 @@ public class Cafeteria {
         this.producto = producto;
     }
 
+    public LinkedList<reporteporInventario> listaInventarioProductos(Connection conexion) {
+        LinkedList<reporteporInventario> reporte = new LinkedList<>();
+        try {
+            String query = "SELECT * FROM tb_producto";
+            PreparedStatement statementProducto = conexion.prepareStatement(query);
+            ResultSet result = statementProducto.executeQuery();
+            while (result.next()) {
+                reporteporInventario dato = new reporteporInventario();  
+                String nombreProducto = result.getString(2); 
+                int cantidadProducto = result.getInt(7);                
+                dato.setNombreProducto(nombreProducto);   
+                dato.setCantidadInventario(cantidadProducto);
+                reporte.add(dato);                           
+            }
+            return reporte;
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            return reporte;
+        }
+    }
     
     
     

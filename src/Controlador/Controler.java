@@ -12,10 +12,16 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import cafeteria_konecta.*;
+import java.awt.BorderLayout;
 import java.awt.HeadlessException;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.LinkedList;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.data.general.DefaultPieDataset;
 
 /**
  *
@@ -36,6 +42,7 @@ public class Controler implements ActionListener {
         this.vista.btnBuscarVenta.addActionListener(this);
         this.vista.btnVender.addActionListener(this);
         agregarProductosaTabla();
+        cantidadProductos();
     }
 
     @Override
@@ -293,6 +300,20 @@ public class Controler implements ActionListener {
         vista.txtbuscarID.setText("");
         vista.txtCantidadVenta.setText("");
         vista.txtCantidadBuscar.setText("");
+    }
+    
+    private void cantidadProductos() throws ClassNotFoundException, SQLException {
+        LinkedList<reporteporInventario> reporte = cafeteria.listaInventarioProductos(conexion.abrir());
+        DefaultPieDataset dataset = new DefaultPieDataset();
+        for (reporteporInventario dato: reporte){
+            dataset.setValue(dato.getNombreProducto(), dato.getCantidadInventario());           
+        }
+        JFreeChart chart = ChartFactory.createPieChart("Inventario de Productos",dataset, true, true, true);
+        ChartPanel panel = new ChartPanel(chart);
+        panel.setMouseWheelEnabled(true);
+        vista.jpInventarioProductos.setLayout(new java.awt.BorderLayout());  
+        vista.jpInventarioProductos.add(panel, BorderLayout.CENTER);         
+        vista.jpInventarioProductos.validate();
     }
 
 }
