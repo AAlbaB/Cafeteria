@@ -43,6 +43,7 @@ public class Controler implements ActionListener {
         this.vista.btnVender.addActionListener(this);
         agregarProductosaTabla();
         cantidadProductos();
+        cantidadVentas();
     }
 
     @Override
@@ -187,7 +188,10 @@ public class Controler implements ActionListener {
                 JOptionPane.showMessageDialog(null, "El inventario no puede ser menor a cero");
                 limpiarCamposVenta();
             } else {
-                Producto producto = new Producto(idProducto, nombreProducto, inventarioProducto);
+                Producto producto_aux = cafeteria.buscarIdVenta(conexion.abrir(), idProducto);
+                int ventasPasadas = producto_aux.getVentaProducto();
+                int historialVentas = ventasPasadas + ventaProducto;
+                Producto producto = new Producto(idProducto, nombreProducto, inventarioProducto, historialVentas);
                 boolean response = cafeteria.hacerVenta(conexion.abrir(), producto);
                 if (response) {
                     agregarProductosaTabla();
@@ -314,6 +318,20 @@ public class Controler implements ActionListener {
         vista.jpInventarioProductos.setLayout(new java.awt.BorderLayout());  
         vista.jpInventarioProductos.add(panel, BorderLayout.CENTER);         
         vista.jpInventarioProductos.validate();
+    }
+
+    private void cantidadVentas() throws ClassNotFoundException, SQLException {
+        LinkedList<reporteporVentas> reporte = cafeteria.listaVentasProductos(conexion.abrir());
+        DefaultPieDataset dataset = new DefaultPieDataset();
+        for (reporteporVentas dato: reporte){
+            dataset.setValue(dato.getNombreProducto(), dato.getCantidadVentas());           
+        }
+        JFreeChart chart = ChartFactory.createPieChart("Ventas de Productos",dataset, true, true, true);
+        ChartPanel panel = new ChartPanel(chart);
+        panel.setMouseWheelEnabled(true);
+        vista.jpVentasProducto.setLayout(new java.awt.BorderLayout());  
+        vista.jpVentasProducto.add(panel, BorderLayout.CENTER);         
+        vista.jpVentasProducto.validate();
     }
 
 }

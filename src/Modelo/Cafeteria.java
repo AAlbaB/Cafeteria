@@ -103,6 +103,27 @@ public class Cafeteria {
             return producto_aux;
         }
     }
+    
+    public Producto buscarIdVenta(Connection conexion, int idProducto) throws SQLException {
+        Producto producto_aux = null;
+        try {
+            String cadena = "SELECT * FROM tb_producto WHERE id_producto = ?";
+            PreparedStatement consulta = conexion.prepareStatement(cadena);
+            consulta.setInt(1, idProducto);
+            ResultSet resultado = consulta.executeQuery();
+            while (resultado.next()) {
+                int productoId = resultado.getInt(1);
+                String productoName = resultado.getString(2);
+                int inventarioProducto = resultado.getInt(7);             
+                int ventaProducto = resultado.getInt(10);
+
+                producto_aux = new Producto(productoId, productoName, inventarioProducto, ventaProducto);
+            }
+            return producto_aux;
+        } catch (SQLException e) {
+            return producto_aux;
+        }
+    }
 
     public boolean editarProducto(Connection conexion, Producto producto) {
         try {
@@ -127,10 +148,11 @@ public class Cafeteria {
     
     public boolean hacerVenta(Connection conexion, Producto producto){
         try{
-            PreparedStatement StatementProducto = conexion.prepareStatement("UPDATE tb_producto SET Nombre = ? , Inventario = ? WHERE id_producto = ? ");
+            PreparedStatement StatementProducto = conexion.prepareStatement("UPDATE tb_producto SET Nombre = ? , Inventario = ?, Cantidad_Ventas = ? WHERE id_producto = ? ");
             StatementProducto.setString(1, producto.getNombre());
             StatementProducto.setInt(2, producto.getInventario());
-            StatementProducto.setInt(3, producto.getId_producto());
+            StatementProducto.setInt(3, producto.getVentaProducto());
+            StatementProducto.setInt(4, producto.getId_producto());
             int resProducto = StatementProducto.executeUpdate();
             
             return resProducto > 0;   
@@ -199,7 +221,7 @@ public class Cafeteria {
             while (result.next()) {
                 reporteporInventario dato = new reporteporInventario();  
                 String nombreProducto = result.getString(2); 
-                int cantidadProducto = result.getInt(7);                
+                int cantidadProducto = result.getInt(7);
                 dato.setNombreProducto(nombreProducto);   
                 dato.setCantidadInventario(cantidadProducto);
                 reporte.add(dato);                           
@@ -211,10 +233,24 @@ public class Cafeteria {
         }
     }
     
-    
-    
-    
-    
-    
-    
+    public LinkedList<reporteporVentas> listaVentasProductos(Connection conexion) {
+        LinkedList<reporteporVentas> reporte = new LinkedList<>();
+        try {
+            String query = "SELECT * FROM tb_producto";
+            PreparedStatement statementProducto = conexion.prepareStatement(query);
+            ResultSet result = statementProducto.executeQuery();
+            while (result.next()) {
+                reporteporVentas dato = new reporteporVentas();  
+                String nombreProducto = result.getString(2); 
+                int ventaProducto = result.getInt(10);
+                dato.setNombreProducto(nombreProducto);   
+                dato.setCantidadVentas(ventaProducto);
+                reporte.add(dato);                           
+            }
+            return reporte;
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            return reporte;
+        }
+    }
 }

@@ -24,11 +24,13 @@ public class Producto {
     private int inventario;
     private LocalDate fechaCreacion;
     private long diasInventario;
+    private int ventaProducto;
 
-    public Producto(int id_producto, String nombre, int inventario){
+    public Producto(int id_producto, String nombre, int inventario, int ventaProducto){
         this.id_producto = id_producto;
         this.nombre = nombre;
         this.inventario = inventario;
+        this.ventaProducto = ventaProducto;
     }
     
     public Producto(String nombre, String referencia, int precio, int peso, String categoria, int inventario, String fechaCreacion) {
@@ -197,6 +199,20 @@ public class Producto {
     @Override
     public String toString() {
         return "Producto{" + "id_producto=" + id_producto + ", Nombre=" + nombre + ", Referencia=" + referencia + ", Precio=" + precio + '}';
+    }
+
+    /**
+     * @return the ventaProducto
+     */
+    public int getVentaProducto() {
+        return ventaProducto;
+    }
+
+    /**
+     * @param ventaProducto the ventaProducto to set
+     */
+    public void setVentaProducto(int ventaProducto) {
+        this.ventaProducto = ventaProducto;
     }
     
 }

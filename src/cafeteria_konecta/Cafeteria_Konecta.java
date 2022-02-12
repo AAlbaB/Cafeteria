@@ -23,10 +23,8 @@ public class Cafeteria_Konecta {
         
         frmCafeteria gui = new frmCafeteria();
         Controler controler = new Controler(gui);
-        gui.setTitle("Gestión de Cafeteria");
+        gui.setTitle("Gestión de Inventario en Cafeteria KONECTA");
         gui.setVisible(true);
         gui.setLocationRelativeTo(null);
-        /*Producto producto1 = new Producto("Dulces", "Quipitos", 1200, 2, "Mecato", 10, "2021-02-01");
-        System.out.println(producto1.calcularTiempo());*/
     }
 }
