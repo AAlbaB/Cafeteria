@@ -18,6 +18,8 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.LinkedList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
@@ -32,6 +34,7 @@ public class Controler implements ActionListener {
 
     private final Cafeteria cafeteria = new Cafeteria();
     private frmCafeteria vista = new frmCafeteria();
+    private graficos vistaGraficos = new graficos();
 
     public Controler(frmCafeteria vista) throws ClassNotFoundException, SQLException {
         this.vista = vista;
@@ -41,10 +44,15 @@ public class Controler implements ActionListener {
         this.vista.btnEliminar.addActionListener(this);
         this.vista.btnBuscarVenta.addActionListener(this);
         this.vista.btnVender.addActionListener(this);
-        agregarProductosaTabla();
+        agregarProductosaTabla();    
+    }
+    
+    public Controler(graficos vistaGraficos) throws ClassNotFoundException, SQLException{
+        this.vistaGraficos = vistaGraficos;
         cantidadProductos();
         cantidadVentas();
     }
+    
 
     @Override
     public void actionPerformed(ActionEvent evt) {
@@ -91,9 +99,11 @@ public class Controler implements ActionListener {
                         try {
                             int resultado = cafeteria.agregarProducto(conexion.abrir(), producto);
                             if (resultado == 1) {
-                                JOptionPane.showMessageDialog(null, "Producto agregado exitosamente");
                                 agregarProductosaTabla();
                                 limpiarCampos();
+                                cantidadProductos();
+                                cantidadVentas();
+                                JOptionPane.showMessageDialog(null, "Producto agregado exitosamente");
                             } else {
                                 JOptionPane.showMessageDialog(null, "Error al agregar producto");
                             }
@@ -305,33 +315,33 @@ public class Controler implements ActionListener {
         vista.txtCantidadVenta.setText("");
         vista.txtCantidadBuscar.setText("");
     }
-    
+
     private void cantidadProductos() throws ClassNotFoundException, SQLException {
         LinkedList<reporteporInventario> reporte = cafeteria.listaInventarioProductos(conexion.abrir());
         DefaultPieDataset dataset = new DefaultPieDataset();
-        for (reporteporInventario dato: reporte){
-            dataset.setValue(dato.getNombreProducto(), dato.getCantidadInventario());           
+        for (reporteporInventario dato : reporte) {
+            dataset.setValue(dato.getNombreProducto(), dato.getCantidadInventario());
         }
-        JFreeChart chart = ChartFactory.createPieChart("Inventario de Productos",dataset, true, true, true);
+        JFreeChart chart = ChartFactory.createPieChart("Inventario de Productos", dataset, true, true, true);
         ChartPanel panel = new ChartPanel(chart);
         panel.setMouseWheelEnabled(true);
-        vista.jpInventarioProductos.setLayout(new java.awt.BorderLayout());  
-        vista.jpInventarioProductos.add(panel, BorderLayout.CENTER);         
-        vista.jpInventarioProductos.validate();
+        vistaGraficos.jpInventarioProductos.setLayout(new java.awt.BorderLayout());
+        vistaGraficos.jpInventarioProductos.add(panel, BorderLayout.CENTER);
+        vistaGraficos.jpInventarioProductos.validate();
     }
 
     private void cantidadVentas() throws ClassNotFoundException, SQLException {
         LinkedList<reporteporVentas> reporte = cafeteria.listaVentasProductos(conexion.abrir());
         DefaultPieDataset dataset = new DefaultPieDataset();
-        for (reporteporVentas dato: reporte){
-            dataset.setValue(dato.getNombreProducto(), dato.getCantidadVentas());           
+        for (reporteporVentas dato : reporte) {
+            dataset.setValue(dato.getNombreProducto(), dato.getCantidadVentas());
         }
-        JFreeChart chart = ChartFactory.createPieChart("Ventas de Productos",dataset, true, true, true);
+        JFreeChart chart = ChartFactory.createPieChart("Ventas de Productos", dataset, true, true, true);
         ChartPanel panel = new ChartPanel(chart);
         panel.setMouseWheelEnabled(true);
-        vista.jpVentasProducto.setLayout(new java.awt.BorderLayout());  
-        vista.jpVentasProducto.add(panel, BorderLayout.CENTER);         
-        vista.jpVentasProducto.validate();
+        vistaGraficos.jpVentasProducto.setLayout(new java.awt.BorderLayout());
+        vistaGraficos.jpVentasProducto.add(panel, BorderLayout.CENTER);
+        vistaGraficos.jpVentasProducto.validate();
     }
 
 }
