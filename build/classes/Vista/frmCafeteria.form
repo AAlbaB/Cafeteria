@@ -25,9 +25,7 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
-              <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="225" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="389" max="-2" attributes="0"/>
               <Component id="jLabel22" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
               <Component id="btnGraficos" min="-2" pref="140" max="-2" attributes="0"/>
@@ -46,7 +44,6 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jLabel22" min="-2" pref="45" max="-2" attributes="0"/>
-                  <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
                   <Component id="btnGraficos" alignment="1" min="-2" pref="42" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
@@ -718,14 +715,6 @@
         </Container>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JLabel" name="jLabel15">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Times New Roman" size="18" style="0"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Por: Andr&#xe9;s Alba"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JLabel" name="jLabel22">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">

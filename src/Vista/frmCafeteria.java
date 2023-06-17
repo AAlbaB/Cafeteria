@@ -76,7 +76,6 @@ public class frmCafeteria extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         txtCantidadVenta = new javax.swing.JTextField();
         btnVender = new javax.swing.JButton();
-        jLabel15 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
         btnGraficos = new javax.swing.JButton();
 
@@ -466,9 +465,6 @@ public class frmCafeteria extends javax.swing.JFrame {
 
         jTabbedPane1.getAccessibleContext().setAccessibleName("Agregar Producto");
 
-        jLabel15.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        jLabel15.setText("Por: Andrés Alba");
-
         jLabel22.setFont(new java.awt.Font("Trebuchet MS", 0, 24)); // NOI18N
         jLabel22.setText("Gestión de Inventario Cafetería");
 
@@ -485,9 +481,7 @@ public class frmCafeteria extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(34, 34, 34)
-                .addComponent(jLabel15)
-                .addGap(225, 225, 225)
+                .addGap(389, 389, 389)
                 .addComponent(jLabel22)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnGraficos, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -503,7 +497,6 @@ public class frmCafeteria extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel15)
                     .addComponent(btnGraficos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -607,7 +600,6 @@ public class frmCafeteria extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;

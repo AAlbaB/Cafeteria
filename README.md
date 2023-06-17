@@ -1,5 +1,5 @@
-# cafeteria_Konecta
-This repository is a tecnical test
+# Cafeteria Konecta
+Pasos para ejecución de programa localmente
 
 Consideraciones para puesta en Marcha:
 
