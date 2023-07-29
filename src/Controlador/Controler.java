@@ -138,7 +138,7 @@ public class Controler implements ActionListener {
                 vista.txtFechaIngreso.setText(producto.getFechaCreacion());
                 vista.txtIdProducto.setText(producto.getId_producto() + "");
             }
-        } catch (HeadlessException | ClassNotFoundException | NumberFormatException | SQLException e) {
+        } catch (HeadlessException | NumberFormatException | SQLException e) {
             JOptionPane.showMessageDialog(null, "Ingresar un nombre válido");
         }
     }
@@ -154,7 +154,7 @@ public class Controler implements ActionListener {
                 vista.txtNombreBuscar.setText(producto.getNombre());
                 vista.txtCantidadBuscar.setText(producto.getInventario() + "");
             }
-        } catch (HeadlessException | ClassNotFoundException | NumberFormatException | SQLException e) {
+        } catch (HeadlessException | NumberFormatException | SQLException e) {
             limpiarCamposVenta();
             JOptionPane.showMessageDialog(null, "Ingresar un ID válido");
         }

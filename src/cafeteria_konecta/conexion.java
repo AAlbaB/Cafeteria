@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package cafeteria_konecta;
 
 import java.sql.*;
@@ -14,27 +13,27 @@ import java.sql.*;
  * @Prueba técnica KONECTA
  */
 public class conexion {
+
     private static Connection cnx = null;
-    
-    public static Connection abrir() throws ClassNotFoundException, SQLException{
-        if(cnx == null){
+
+    public static Connection abrir() {
+        if (cnx == null) {
             try {
-                 Class.forName("com.mysql.cj.jdbc.Driver");
-                 cnx = DriverManager.getConnection("jdbc:mysql://localhost:3306/bDCafeteria","root","");
+                Class.forName("org.postgresql.Driver");
+                String jdbcUrl = " ";
+                cnx = DriverManager.getConnection(jdbcUrl);
             } catch (ClassNotFoundException e) {
-                throw new ClassNotFoundException(e.getMessage());
-            }catch (SQLException e) {
-                throw new SQLException(e.getCause());
+                System.out.println(e.getMessage());
+            } catch (SQLException e) {
+                System.out.println(e.getCause());
             }
-            
         }
         return cnx;
     }
-    
-    public static void cerrar() throws SQLException{
-        if(cnx != null){
+
+    public static void cerrar() throws SQLException {
+        if (cnx != null) {
             cnx.close();
         }
     }
-
 }
