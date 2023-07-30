@@ -22,7 +22,7 @@ Para la siguiente versión del programa, se utilizo la base de datos en RDS de A
 1. Se debe cambiar la clase del apuntador en el archivo `conexion.java`
 - Class.fornmae (linea 22) = "org.postgresql.Driver"
 - jdbcUrl (Linea 23) = "jdbc:driver://hostname:port/dbName?user=userName&password=password"
-2. Se debe crear la tabla de productos con:
+2. Se debe crear la tabla de productos en la base de datos de RDS con:
 ```
 CREATE TABLE IF NOT EXISTS public.tb_producto
 (
@@ -38,4 +38,6 @@ CREATE TABLE IF NOT EXISTS public.tb_producto
 	Cantidad_Ventas integer NOT NULL DEFAULT 0
 );
 ```
-4. Para ejecutar la aplicación, compilamos el proyecto con: Clic derecho en el proyecto, "Clean and Build". Esto generará en la carpeta "dist" un ejecutable de Java: `Cafeteria_Konecta.jar`, el cual se ejecuta para iniciar nuestra aplicación.
+3. Para ejecutar la aplicación, compilamos el proyecto con: Clic derecho en el proyecto, "Clean and Build". Esto generará en la carpeta "dist" un ejecutable de Java: `Cafeteria_Konecta.jar`, el cual se ejecuta para iniciar nuestra aplicación.
+4. La API de la aplicación que se encarga de recibir las solicitudes del Frontend esta alojada en AWS Beanstalk: `http://cafeteriaapi-env.eba-uqgktuci.us-east-1.elasticbeanstalk.com/`
+5. El Frontend de la aplicación se encuntra alojada en AWS S3: `http://smartsellweb.s3-website-us-east-1.amazonaws.com/`
